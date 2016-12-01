@@ -250,3 +250,17 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+/MiguelPortFinal/App_Browsers
+/MiguelPortFinal/App_Data
+/MiguelPortFinal/App_Plugins/ModelsBuilder
+/MiguelPortFinal/Config
+/MiguelPortFinal/Umbraco
+/MiguelPortFinal/Umbraco_Client
+/MiguelPortFinal/Properties
+/MiguelPortFinal/default.aspx
+/MiguelPortFinal/Global.asax
+/MiguelPortFinal/MiguelPortFinal.csproj
+/MiguelPortFinal/packages.config
+/MiguelPortFinal/Web.config
+/MiguelPortFinal/Web.Debug.config
+/MiguelPortFinal/Web.Release.config

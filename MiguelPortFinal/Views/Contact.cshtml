@@ -1,0 +1,18 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+	Layout = "Master.cshtml";
+}
+<section class="module">
+    <div class="container-fluid container-custom">
+
+        <!-- MODULE TITLE -->
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <h2 class="module-title font-alt">@Umbraco.Field("title")</h2>
+                <p class="module-subtitle">@Umbraco.Field("subtitle")</p>
+                @Html.Action("Index", "ContactFormSurface")
+            </div>
+        </div>
+        <!-- /MODULE TITLE -->
+    </div>
+</section>

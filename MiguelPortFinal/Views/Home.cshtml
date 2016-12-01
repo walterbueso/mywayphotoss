@@ -1,0 +1,24 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "Master.cshtml";
+    var ctaLink = Umbraco.TypedContent(Model.Content.GetPropertyValue<int>("callToAction"));
+    var ctaTitle = Model.Content.GetPropertyValue("ctaTitle");
+}
+<!-- HERO -->
+<section id="hero" class="module-hero bg-dark-30 js-fullheight" data-background="@Url.GetCropUrl(Model.Content, "backgroundImage", "main")">
+    <!-- HERO TEXT -->
+    <div class="hero-caption">
+        <div class="hero-text">
+            <p class="m-b-30 subtitles">@Umbraco.Field("topSubtitle")</p>
+            <h1 class="m-b-30">@Umbraco.Field("mainTitle")</h1>
+            <p class="m-b-60 subtitles">@Umbraco.Field("subtitle")</p>
+            @if (Model.Content.HasValue("callToAction"))
+            {
+                <a href="@ctaLink.Url" class="btn btn-dark anim-scroll">@Umbraco.If(Model.Content.HasValue("ctaTitle"), (string)ctaTitle, "Learn More")</a>
+            }
+
+        </div>
+    </div>
+    <!-- /HERO TEXT -->
+</section>
+<!-- /HERO -->

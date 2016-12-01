@@ -1,0 +1,68 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "Master.cshtml";
+   
+}
+<!-- HERO -->
+<section id="hero" class="module-hero bg-dark-30" data-background="@Url.GetCropUrl(Model.Content, "heroWThumb", "main")">
+
+    <!-- HERO TEXT -->
+    <div class="hero-caption">
+        <div class="hero-text">
+            <h1 class="hero-title font-alt">@Umbraco.Field("title")</h1>
+            @if (CurrentPage.HasProperty("subtitle") && CurrentPage.HasValue("subtitle"))
+            {
+                <p class="hero-subtitle font-serif">@Umbraco.Field("subtitle")</p>
+            }
+        </div>
+    </div>
+    <!-- /HERO TEXT -->
+
+</section>
+<!-- /HERO -->
+<!-- PORTFOLIO SINGLE -->
+<section class="module">
+    <div class="container-fluid container-custom">
+
+        <div class="row">
+
+            <div class="col-sm-8 col-sm-offset-2">
+
+                <!-- PORTFOLIO CONTENT -->
+                <article class="portfolio-post post">
+
+                    @Umbraco.Field("bodyText")
+                </article>
+                <!-- /PORTFOLIO CONTENT -->
+            </div><!-- .col-* -->
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="works-grid-wrapper">
+            <div id="works-grid" class="works-grid works-grid-gutter work-grid-4">
+
+                <!-- Enter for each here-->
+                @if (CurrentPage.HasValue("images"))
+                {
+                    var caseStudyImagesCollection = Umbraco.TypedMedia(CurrentPage.images).Children;
+                    foreach (var caseStudyImage in caseStudyImagesCollection)
+                    {
+                        <div class="work-item gallery-item">
+                            <div class="work-wrapper">
+                                <div class="work-thumbnail">
+                                    <img src="@caseStudyImage.Url" alt="">
+                                </div>
+                                <div class="work-caption">
+                                    <i class="fa fa-search-plus work-title " aria-hidden="true"></i>
+                                </div>
+                                <a class="work-link" href="@caseStudyImage.Url" title="@caseStudyImage.Name"></a>
+                            </div>
+                        </div>
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+</section>

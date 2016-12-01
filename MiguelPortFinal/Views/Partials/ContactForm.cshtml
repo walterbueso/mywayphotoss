@@ -1,0 +1,42 @@
+﻿@model MiguelPortFinal.Models.ContactFormViewModel
+
+
+@using (Html.BeginUmbracoForm<MiguelPortFinal.Controllers.ContactFormSurfaceController>("HandleFormSubmit", new { @id = "contact-form" }))
+{
+    @Html.AntiForgeryToken()
+
+    if (TempData["EmailSent"] != null && (bool)TempData["EmailSent"])
+    {
+        <div class="alert alert-success" role="alert"> <strong>Message Sent!</strong> Thank you for contacting me, I will get back to your shortly.</div>
+    }
+    else if (TempData["EmailSent"] != null && (bool)TempData["EmailSent"] == false)
+    {
+        <div class="alert alert-danger" role="alert"> <strong>Oh snap!</strong> Something went wrong, please try again later.</div>
+    }
+
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, new { @class = "sr-only"})
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Name*"})
+        @Html.ValidationMessageFor(model => model.Name,"", new { @class = "text-danger"})
+    </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "sr-only" })
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Email*" })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "sr-only" })
+            @Html.TextAreaFor(model => model.Message, new { @class = "form-control", placeholder = "Message*", rows = "7" })
+            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+        </div>
+
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-block btn-round btn-dark">Submit</button>
+        </div>
+}

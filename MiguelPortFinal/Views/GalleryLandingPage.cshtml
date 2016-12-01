@@ -1,0 +1,85 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+	Layout = "Master.cshtml";
+}
+<section id="hero" class="module-hero bg-dark-60" data-background="@Url.GetCropUrl(Model.Content, "heroImg", "main")">
+
+    <!-- HERO TEXT -->
+    <div class="hero-caption">
+        <div class="hero-text">
+            <h1 class="hero-title font-alt">@Umbraco.Field("title")</h1>
+            @if (CurrentPage.HasProperty("subtitle") && CurrentPage.HasValue("subtitle"))
+            {
+                <p class="hero-subtitle font-serif">@Umbraco.Field("subtitle")</p>
+            }
+        </div>
+    </div>
+    <!-- /HERO TEXT -->
+</section>
+
+<section class="module">
+    <div class="container-fluid container-custom">
+
+        <div class="row">
+
+            <div class="col-sm-8 col-sm-offset-2">
+
+                <!-- PORTFOLIO CONTENT -->
+                <article class="portfolio-post post">
+
+                    @Umbraco.Field("bodyText")
+                </article>
+                <!-- /PORTFOLIO CONTENT -->
+            </div><!-- .col-* -->
+
+        </div>
+    </div>
+</section>
+<!-- PORTFOLIO SINGLE -->
+
+<section class="module bg-gray">
+
+    <div class="container-fluid container-custom">
+
+
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <h2 class="module-title font-alt">@Umbraco.Field("albumTitles")</h2>
+                <p class="module-subtitle">@Umbraco.Field("albumDescription")</p>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="container-fluid">
+
+        <!-- WORKS GRID -->
+        <div class="works-grid-wrapper">
+
+            <div id="works-grid" class="works-grid works-grid-gutter work-grid-3">
+                @{ var child = Model.Content.Children;}
+                @foreach (var item in child)
+                {
+                    //render each hero img and album name from child
+                    <article class="work-item ">
+                        <div class="work-wrapper">
+                            <div class="work-thumbnail full-time-hover">
+                                <img src="@item.GetCropUrl("heroWThumb", "small")" alt="@item.Name">
+                            </div>
+                            <div class="work-caption full-cap">
+                                <h3 class="work-title font-alt full-title">@item.Name</h3>
+                            </div>
+                            <a href="@item.Url" class="work-link"></a>
+                        </div>
+                    </article>
+                }
+
+            </div>
+        </div>
+        <!-- /WORKS GRID -->
+
+    </div>
+
+</section>
+<!-- /RELATED WORKS -->
